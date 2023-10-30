@@ -1,0 +1,324 @@
+void main() {
+  List<int> list1 = [];
+  List<int> list2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 89];
+  problem12(5, 4);
+}
+
+void problem1(String str){
+  print(str);
+}
+
+void problem2(int num){
+  if(num % 2 == 0){
+    print('Number is even.'); 
+  }
+  else{
+    print('Number is odd.');
+  }
+}
+
+void problem3(){
+  for(int i = 1; i < 101; i += 2){
+    print(i);
+  }
+}
+
+void problem4(List<int> list){
+  var nums = new List<int>.filled(list.length, 0, growable: false);
+  for(int i = 0; i < list.length; i++){
+    nums[i] = list[i] * list[i];
+    print(nums[i]);
+  }
+}
+
+void problem5(int num){
+  var nums = new List<int>.filled(0, 0, growable: true);
+  for(int i = 2; i <= num; i++){
+    if(num % i == 0){
+      nums.add(i);
+      print(i);
+    }
+  }
+}
+
+void problem6(List<int> list1, List<int> list2){
+  var nums = new List<int>.filled(0, 0, growable: true);
+  for(int i = 0; i < list1.length; i++){
+    for(int j = 0; j < list2.length; j++){
+      if(list1[i] == list2[j]){
+        nums.add(list1[i]);
+        print(list1[i]);
+        break;
+      }
+    }
+  }
+}
+
+void problem7(int num){
+  int i = 2;
+  bool prime = true;
+  while(i < num){
+    if(num % i == 0){
+      prime = false;
+      break;
+    }
+    i++;
+  }
+  print(prime);
+}
+
+void problem8(List<int> nums){
+  var set = new Set<int>();
+  for(int i = 0; i < nums.length; i++){
+    if(!set.contains(nums[i])){
+      set.add(nums[i]);
+      print(nums[i]);
+    }
+  }
+}
+
+void problem9(int num){
+  int num1 = 0;
+  int num2 = 1;
+  int i = 0;
+  while(i < num){
+    num2 = num1 + num2;
+    num1 = num2 - num1;
+    print(num1);
+    i++;
+  }
+}
+
+void problem9Rec(int num, int i, int num1, int num2){
+  if(i < num){
+    print(num1);
+    problem9Rec(num, i + 1, num2, num1 + num2);
+  }  
+}
+
+void problem10(int num, List<int> nums){
+  if(num == 1){
+    nums.add(0);
+    nums.add(1);
+  }
+  if(nums.length < num){
+    problem10(num - 1, nums);
+  }
+  if(nums.length == num){
+    nums.add(nums[num - 1] + nums[num - 2]);
+    print(nums[num]);
+  }
+}
+
+void problem11(String str){
+  bool alfo = false;
+  bool number = false;
+  bool symbol = false;
+  if(str.length < 8){
+    print('Weak');
+    return;
+  }
+  for(int i = 0; i < str.length; i++){
+    if(str.codeUnitAt(i) >= 48 && str.codeUnitAt(i) <= 57){
+      number = true;
+    }
+    else if(str.codeUnitAt(i) >= 65 && str.codeUnitAt(i) <= 90 || 
+        str.codeUnitAt(i) >= 97 && str.codeUnitAt(i) <= 122){
+      alfo = true;
+    }
+    else {
+      symbol = true;
+    }
+  }
+  
+  if(alfo && number && symbol){
+    print('Strong');
+  }
+  else{
+    print('Weak');
+  }
+}
+
+void problem12(int row, int col){
+  String column = ' ---';
+  String ro = "|";
+  for(int i = 0; i < col; i++){
+    if(col - 1 != i){
+      column += " " + "---";
+    }
+    ro += "   |";
+  }
+  for(int i = 0; i < row; i++){
+    print(column);
+    print(ro);
+  }
+  print(column);
+}
+
+class Animal {
+  String name;
+  int age;
+  
+  Animal(this.name, this.age);
+  
+  void describe(){
+    print('This is a $name and it is $age years old.');
+  }
+}
+
+class Car {
+  String make;
+  String model;
+  int year;
+  
+  Car(this.make, this.model, this.year);
+  
+  void describe(){
+    print('This is a $make and the model is $model and it is made in $year.');
+  }
+}
+
+class Book {
+  String title;
+  String author;
+  int pages;
+  
+  Book(this.title, this.author, this.pages);
+  
+  void describe(){
+    print('The title of this book is $title and the author is $author and the number of the pages is $pages.');
+  }
+}
+
+class Movie {
+  String title;
+  String director;
+  int runtime;
+  
+  Movie(this.title, this.director, this.runtime);
+  
+  void describe(){
+    print('The title of this movie is $title and the director is $director and the runtime is $runtime.');
+  }
+}
+
+class Song {
+  String title;
+  String artist;
+  int duration;
+  
+  Song(this.title, this.artist, this.duration);
+  
+  void describe(){
+    print('The title of this song is $title and the artist is $artist and duration is $duration.');
+  }
+}
+
+mixin Swim {
+  void swim() {
+    print('Swimming...');
+  }
+}
+class Fish with Swim {}
+
+mixin Run {
+  void run() {
+    print('Running...');
+  }
+}
+class Dog with Run {}
+
+mixin Climb {
+  void swim() {
+    print('Climbing...');
+  }
+}
+class Monkey with Climb {}
+
+mixin Jump {
+  void jump() {
+    print('Jumping...');
+  }
+}
+class Kangroo with Jump {}
+
+
+abstract class Instrument{
+  void play();
+}
+
+class Guitar extends Instrument{
+  @override
+  void play(){
+    print("Guitar is being played.");
+  }
+}
+
+class Piano extends Instrument{
+  @override
+  void play(){
+    print("Piano is being played.");
+  }
+}
+
+abstract class Device {
+  void powerOn(){
+    print("Power is on");
+  }
+}
+
+class Laptop extends Device{}
+
+class SmartPhone extends Device{}
+
+abstract class Furniture {
+  void dimensions();
+}
+
+class Table extends Furniture{
+  int width;
+  int length;
+  
+  Table(this.width, this.length);
+  
+  @override
+  void dimensions(){
+    print("Length is $length and width is $width");
+  }
+}
+
+class Chair extends Furniture{
+  int width;
+  int length;
+  
+  Chair(this.width, this.length);
+  
+  @override
+  void dimensions(){
+    print("Length is $length and width is $width");
+  }
+}
+
+abstract class Appliance{
+  void powerUsage();
+}
+
+class Refrigerator extends Appliance{
+  int usage;
+  Refrigerator(this.usage);
+  
+  @override
+  void powerUsage(){
+    print("Power usage is $usage");
+  }
+}
+
+class Oven extends Appliance{
+  int usage;
+  Oven(this.usage);
+  
+  @override
+  void powerUsage(){
+    print("Power usage is $usage");
+  }
+}
